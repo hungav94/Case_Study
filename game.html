@@ -8,39 +8,6 @@
 <canvas id="canvas" width="400" height="600" style="border: 1px solid rgba(136,136,136,0.6)"></canvas>
 
 <script src="Circle.js"></script>
-<script>
-    let canvas = document.getElementById('canvas');
-    let context = canvas.getContext('2d');
-
-    let circle = new Circle(10, canvas.height - 110, 10, 50, 2);
-
-    function moveSelection(evt) {
-        switch (evt.keyCode) {
-            case 38:
-                circle.moveUp();
-                circle.draw(canvas);
-                circle.speedY = 2;
-                break;
-        }
-    }
-
-    let arrCircle = [];
-
-    function move() {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        // arrCircle.splice(circle.draw(canvas),1);
-        circle.moveDown();
-        circle.draw(canvas);
-        // arrCircle.push(circle.draw(canvas));
-        circle.isTouch(canvas);
-        console.log(circle.y);
-
-        requestAnimationFrame(move);
-    }
-
-    // setInterval(move,100);
-    move();
-    document.addEventListener("keydown", moveSelection)
-</script>
+<script src="xuly.js"></script>
 </body>
 </html>

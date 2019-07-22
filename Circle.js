@@ -1,17 +1,23 @@
-function Circle(x, y, radius, speed, speedY) {
+function Circle(x, y, radius, speed, speedXY) {
     this.x = x;
     this.y = y;
     this.radius = radius;
     this.speed = speed;
-    this.speedY = speedY;
+    this.speedXY = speedXY;
 
     this.moveUp = function () {
         this.y -= this.speed;
     };
 
     this.moveDown = function () {
-        this.y += this.speedY;
+        this.y += this.speedXY;
     };
+    // this.moveLeft = function () {
+    //     this.x -= this.speedXY;
+    // };
+    // this.moveRight = function () {
+    //     this.x += this.speedXY;
+    // };
     this.draw = function (canvas) {
         let context = canvas.getContext('2d');
         context.beginPath();
@@ -20,11 +26,9 @@ function Circle(x, y, radius, speed, speedY) {
         context.closePath();
     };
     this.isTouch = function (canvas) {
-        if (this.y < 0 || this.y > canvas.height) {
-            this.speedY = -this.speedY;
-        } else if (this.y >= canvas.height - 100) {
+        if (this.y >= canvas.height - 100) {
             this.y = canvas.height - 100;
         }
-        return this.speedY;
+        return this.speedXY;
     }
 }
