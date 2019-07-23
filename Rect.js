@@ -1,7 +1,7 @@
 function Rect(x, y, speed, width, height) {
     this.x = x;
     this.y = y;
-    this.speed = Math.floor(Math.random()*speed + 10);
+    this.speed = Math.round(Math.random()*speed + 10);
     this.width = width;
     this.height = height;
     this.getX = function () {

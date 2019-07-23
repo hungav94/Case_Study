@@ -1,17 +1,20 @@
-function Circle(x, y, radius, speed, speedXY) {
+function Circle(x, y, radius, speed, speedDown) {
     this.x = x;
     this.y = y;
     this.radius = radius;
     this.speed = speed;
-    this.speedXY = speedXY;
+    this.speedDown = speedDown;
     this.canJump = true;
+    this.isMoveDown = true;
 
     this.moveUp = function () {
         this.y -= this.speed;
     };
 
     this.moveDown = function () {
-        this.y += this.speedXY;
+        if (this.isMoveDown) {
+            this.y += this.speedDown;
+        }
     };
     this.moveLeft = function () {
         this.x -= 10;
@@ -27,12 +30,23 @@ function Circle(x, y, radius, speed, speedXY) {
         context.fill();
         context.closePath();
     };
-    this.isTouchLine = function (Circle, Line) {
-        let bottomCircle = Circle.y + Circle.radius;
-        let topline = Line.y;
-        if (bottomCircle >= topline) {
-            Circle.y = topline - Circle.radius - this.speedXY;
+    this.isTouchGround = function () {
+        if (this.y >= canvas.height - 100) {
+            this.y = canvas.height - 100 - this.speedDown;
             this.canJump = true;
+        }
+    };
+    this.isTouchLine = function (Line) {
+        if (this.y + this.radius == Line.y) {
+            if (this.x + this.radius > Line.x && this.x - this.radius < Line.x + Line.width) {
+                this.y = Line.y - this.radius;
+                this.isMoveDown = false;
+                this.canJump = true;
+            } else {
+                this.isMoveDown = true;
+            }
+        } else {
+            this.isMoveDown = true;
         }
     };
     this.isTouchWall = function () {
