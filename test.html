@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<canvas id="canvas" width="400" height="600" style="border: 1px solid rgba(136,136,136,0.6)"></canvas>
+<script>
+    let canvas = document.getElementById('canvas');
+    let context = canvas.getContext('2d');
+    context.moveTo(0, 0);
+    context.lineTo(10, 10);
+    context.stroke();
+</script>
+</body>
+</html>
